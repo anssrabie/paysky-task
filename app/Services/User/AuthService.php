@@ -2,6 +2,7 @@
 
 namespace App\Services\User;
 
+use App\DTO\LoginDTO;
 use App\Http\Resources\User\ProfileResource;
 use App\Repositories\User\AuthRepository;
 use App\Services\BaseService;
@@ -15,16 +16,16 @@ class AuthService extends BaseService
     /**
      * Handle user login.
      *
-     * @param array $credentials
-     * @return array
+     * @param LoginDTO $credentials
+     * @return JsonResponse
      */
-    public function login(array $credentials): JsonResponse
+    public function login(LoginDTO $credentials): JsonResponse
     {
         // Retrieve user by email
-        $user = $this->authRepository->getUserByEmail($credentials['email']);
+        $user = $this->authRepository->getUserByEmail($credentials->email);
 
         // Verify credentials
-        if (!$user || !$this->authRepository->verifyCredentials($user, $credentials['password'])) {
+        if (!$user || !$this->authRepository->verifyCredentials($user, $credentials->password)) {
             return $this->errorMessage('Invalid email or password.');
         }
 
