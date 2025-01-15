@@ -1,9 +1,15 @@
 <?php
 
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -21,5 +27,39 @@ return Application::configure(basePath: dirname(__DIR__))
         //
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        //
+
+        function formatErrorResponse($exception, $statusCode) {
+            return response()->json([
+                'message' => $exception->getMessage(),
+                'status' => false,
+                'code' => $statusCode,
+                'data' => [],
+            ], $statusCode);
+        }
+
+        $exceptions->render(function (NotFoundHttpException $exception) {
+            return formatErrorResponse($exception, 404);
+        });
+
+        $exceptions->render(function (AuthorizationException $exception) {
+            return formatErrorResponse($exception, 403);
+        });
+
+        $exceptions->render(function (AccessDeniedHttpException $exception) {
+            return formatErrorResponse($exception, 403);
+        });
+
+        $exceptions->render(function (QueryException $exception) {
+            return formatErrorResponse($exception, 500);
+        });
+
+        $exceptions->render(function (AuthenticationException $exception) {
+            return formatErrorResponse($exception, 401);
+        });
+
+        // Handling any other exceptions
+//        $exceptions->render(function (Exception $exception) {
+//            return formatErrorResponse($exception, 500);
+//        });
+
     })->create();

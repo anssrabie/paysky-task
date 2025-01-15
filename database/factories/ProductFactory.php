@@ -18,7 +18,7 @@ class ProductFactory extends Factory
     {
         return [
             'name' => $this->faker->word(),
-            'price' => $this->faker->randomFloat(2, 10, 500), // Generates a random price between 10 and 500 with 2 decimal places
+            'price' => $this->faker->randomFloat(0, 10, 500),
         ];
     }
 }

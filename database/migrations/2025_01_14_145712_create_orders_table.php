@@ -2,6 +2,7 @@
 
 use App\Enum\OrderStatus;
 use App\Enum\PaymentStatus;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,9 +16,10 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->decimal('total_amount');
-            $table->enum('status',OrderStatus::getKeyList());
-            $table->enum('payment_status',PaymentStatus::getKeyList());
+            $table->enum('status',OrderStatus::getKeyList())->default(OrderStatus::getPending());
+            $table->enum('payment_status',PaymentStatus::getKeyList())->default(PaymentStatus::getPending());
             $table->timestamps();
             $table->softDeletes();
         });
