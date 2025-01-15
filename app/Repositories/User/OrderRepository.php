@@ -127,21 +127,8 @@ class OrderRepository
      * @param string $status
      * @return Order|null|bool
      */
-    public function updatePaymentStatus(int $orderId, string $status)
+    public function updatePaymentStatus(Order $order, string $status)
     {
-        // Retrieve the order by its ID
-        $order = $this->getOrderById($orderId);
-
-        // If the order doesn't exist, return null
-        if (!$order) {
-            return null;
-        }
-
-        // Prevent updating from 'successful' to 'failed'
-        if ($order->payment_status === PaymentStatus::SUCCESSFUL && $status === PaymentStatus::FAILED) {
-            return false; // Indicating the update was not successful
-        }
-
         // Proceed with the status update
         $order->update([
             'payment_status' => $status,
@@ -149,6 +136,29 @@ class OrderRepository
         ]);
         $order->refresh(); // Refresh the order instance to include the latest changes
         return $order;
+    }
+
+
+    /**
+     * Check if the status change is not allowed.
+     *
+     * @param string $currentStatus
+     * @param string $newStatus
+     * @return bool
+     */
+    public function isPaymentStatusChangeAllowed(string $currentStatus, string $newStatus): bool
+    {
+        // Prevent updates if the current status is non-pending and the status is being changed
+        if (in_array($currentStatus, PaymentStatus::getKeyListExcept(PaymentStatus::getPending()))) {
+            return false;
+        }
+
+        // Prevent 'successful' orders from being changed to 'failed'
+        if ($currentStatus === PaymentStatus::SUCCESSFUL && $newStatus === PaymentStatus::FAILED) {
+            return false;
+        }
+
+        return true;
     }
 
 }

@@ -2,6 +2,7 @@
 
 namespace App\Services\User;
 
+use App\Enum\PaymentStatus;
 use App\Http\Resources\User\OrderResource;
 use App\Repositories\User\OrderRepository;
 use App\Services\BaseService;
@@ -31,15 +32,27 @@ class OrderService extends BaseService
 
     public function updatePaymentStatus(int $orderId, string $status)
     {
-        // Update the payment status through the repository
-        $order = $this->orderRepository->updatePaymentStatus($orderId, $status);
+        // Retrieve the order from the repository
+        $order = $this->orderRepository->getOrderById($orderId);
 
-        // If the update failed (due to the status check)
+        // If the order doesn't exist, return a specific error
         if (!$order) {
-            return $this->errorMessage('You cannot change the status of the order.', 400);
+            return $this->errorMessage('Order not found.', 404);
         }
+
+        // Prevent updating from 'successful' to 'failed'
+        $paymentStatus = $order->payment_status;
+        if (!$this->orderRepository->isPaymentStatusChangeAllowed($paymentStatus,$status)) {
+            return $this->errorMessage('Order status cannot be changed.', 400);
+        }
+
+        // Update the payment status
+        $order = $this->orderRepository->updatePaymentStatus($order, $status);
 
         // Return the updated order data in the response
         return $this->returnData(new OrderResource($order), __('Order status has been updated successfully'));
     }
+
+
+
 }
