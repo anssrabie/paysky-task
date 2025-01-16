@@ -17,6 +17,8 @@ The goal of this task is to build a simple API that handles orders and payments 
     - Implement a soft delete feature for orders.
 - **Unit Tests** (Bonus):
     - Unit tests are included to ensure that the login, order creation, payment status updates, all products and show specific product are working as expected.
+- **Docker Integration** (Bonus):
+    - Docker is used to containerize the application.
 
 ## Tech Stack
 - **Backend**: Laravel 11
