@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\TooManyRequestsHttpException;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -47,6 +48,10 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $exceptions->render(function (AccessDeniedHttpException $exception) {
             return formatErrorResponse($exception, 403);
+        });
+
+        $exceptions->render(function (TooManyRequestsHttpException $exception) {
+            return formatErrorResponse($exception, 429);
         });
 
         $exceptions->render(function (QueryException $exception) {

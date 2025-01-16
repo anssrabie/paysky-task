@@ -30,7 +30,7 @@ class AuthService extends BaseService
         }
 
         // Generate authentication token
-        $data['token'] = $user->createToken('auth_token')->plainTextToken;
+        $data['token'] = $user->createToken('user')->plainTextToken;
         $data['profile'] = new ProfileResource($user);
         return $this->returnData($data,'Login successful.');
     }
