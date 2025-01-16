@@ -62,9 +62,9 @@ return Application::configure(basePath: dirname(__DIR__))
             return formatErrorResponse($exception, 401);
         });
 
-        // Handling any other exceptions
-//        $exceptions->render(function (Exception $exception) {
-//            return formatErrorResponse($exception, 500);
-//        });
+         //Handling any other exceptions
+        $exceptions->render(function (Exception $exception) {
+            return formatErrorResponse($exception, 500);
+        });
 
     })->create();

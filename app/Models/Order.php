@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
 {
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
     protected $fillable = ['user_id','total_amount','status','payment_status','user_id'];
     protected $casts = [
         'total_amount' => 'float',

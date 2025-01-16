@@ -15,6 +15,8 @@ The goal of this task is to build a simple API that handles orders and payments 
     - Implement authentication using Laravel Passport or Sanctum.
 - **Soft Delete for Orders** (Bonus):
     - Implement a soft delete feature for orders.
+- **Unit Tests** (Bonus):
+    - Unit tests are included to ensure that the login, order creation, payment status updates, all products and show specific product are working as expected.
 
 ## Tech Stack
 - **Backend**: Laravel 11
