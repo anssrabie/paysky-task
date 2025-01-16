@@ -12,7 +12,7 @@ The goal of this task is to build a simple API that handles orders and payments 
     - Simulate payment status updates (pending, successful, failed).
     - Provide an endpoint to update the payment status.
 - ✅ **Authentication** (Bonus):
-    - Implement authentication using Laravel Passport or Sanctum.
+    - Implement authentication using Sanctum.
 - ✅ **Soft Delete for Orders** (Bonus):
     - Implement a soft delete feature for orders.
 - ✅ **Unit Tests** (Bonus):
