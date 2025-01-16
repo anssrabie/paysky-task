@@ -59,7 +59,7 @@ The goal of this task is to build a simple API that handles orders and payments 
    - Update your .env file with your database credentials.
    - Run the migrations and seeders:
    ```bash
-    php artisan migrate --seed
+    php artisan migrate:fresh --seed
    
 6. **Run the application**:
    ```bash
