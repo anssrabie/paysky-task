@@ -15,8 +15,6 @@ The goal of this task is to build a simple API that handles orders and payments 
     - Implement authentication using Laravel Passport or Sanctum.
 - **Soft Delete for Orders** (Bonus):
     - Implement a soft delete feature for orders.
-- **Unit and Feature Tests** (Bonus):
-    - Provide unit and feature tests for the order and payment functionalities.
 
 ## Tech Stack
 - **Backend**: Laravel 11
@@ -64,6 +62,24 @@ The goal of this task is to build a simple API that handles orders and payments 
 6. **Run the application**:
    ```bash
     php artisan serve
+--------------------
+
+
+### Installation with Docker
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/anssrabie/paysky-task.git
+
+2. **Navigate to the project folder**:
+   ```bash
+   cd paysky-task
+
+3. **Build the Docker containers: If you don't have Docker installed, download and install it from [here](https://www.docker.com/)**:
+   ```bash
+   docker-compose up --build
+   
+4. **Access the application: The application will now be running at (http://localhost:8000). You can access it through the browser**:
+
 --------------------
 
 ## Postman API Documentation
