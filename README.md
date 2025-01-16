@@ -4,20 +4,20 @@
 The goal of this task is to build a simple API that handles orders and payments for an e-commerce platform. The API will allow the creation of orders, retrieval of order details, and updating the payment status of orders.
 
 ## Features
-- **Order Management**:
+- ✅ **Order Management**:
     - Create an order by accepting product IDs, quantities, and prices.
     - Calculate total amount including a 10% tax.
     - Store order details and related products.
-- **Payment Integration**:
+- ✅ **Payment Integration**:
     - Simulate payment status updates (pending, successful, failed).
     - Provide an endpoint to update the payment status.
-- **Authentication** (Bonus):
+- ✅ **Authentication** (Bonus):
     - Implement authentication using Laravel Passport or Sanctum.
-- **Soft Delete for Orders** (Bonus):
+- ✅ **Soft Delete for Orders** (Bonus):
     - Implement a soft delete feature for orders.
-- **Unit Tests** (Bonus):
-    - Unit tests are included to ensure that the login, order creation, payment status updates, all products and show specific product are working as expected.
-- **Docker Integration** (Bonus):
+- ✅ **Unit Tests** (Bonus):
+    - Unit tests are included to ensure that the login, order creation, payment status updates, all products, and show specific product are working as expected.
+- ✅ **Docker Integration** (Bonus):
     - Docker is used to containerize the application.
 
 ## Tech Stack
