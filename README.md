@@ -40,11 +40,11 @@ The goal of this task is to build a simple API that handles orders and payments 
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-repository/paysky-laravel-task.git
+   git clone https://github.com/anssrabie/paysky-task.git
 
 2. **Install dependencies: Navigate into the project folder and run**:
    ```bash
-   cd paysky-laravel-task
+   cd paysky-task
    composer install
    
 3. **Environment setup: Copy the .env.example file to .env**:
