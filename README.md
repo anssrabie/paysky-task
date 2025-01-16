@@ -1,66 +1,92 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Paysky Laravel Task - Basic E-Commerce Payment System API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+## Objective
+The goal of this task is to build a simple API that handles orders and payments for an e-commerce platform. The API will allow the creation of orders, retrieval of order details, and updating the payment status of orders.
+
+## Features
+- **Order Management**:
+    - Create an order by accepting product IDs, quantities, and prices.
+    - Calculate total amount including a 10% tax.
+    - Store order details and related products.
+- **Payment Integration**:
+    - Simulate payment status updates (pending, successful, failed).
+    - Provide an endpoint to update the payment status.
+- **Authentication** (Bonus):
+    - Implement authentication using Laravel Passport or Sanctum.
+- **Soft Delete for Orders** (Bonus):
+    - Implement a soft delete feature for orders.
+- **Unit and Feature Tests** (Bonus):
+    - Provide unit and feature tests for the order and payment functionalities.
+
+## Tech Stack
+- **Backend**: Laravel 11
+- **Database**: MySQL
+- **Authentication**: Sanctum
+- **Containerization**: Docker (optional)
+
+## Setup Instructions
+
+### Requirements
+<p align="center"> <a href="https://www.php.net/"> <img src="https://www.php.net/images/logos/new-php-logo.svg" height="60"> </a> <a href="https://www.mysql.com/"> <img src="https://www.mysql.com/common/logos/logo-mysql-170x115.png" height="60"> </a> <a href="https://getcomposer.org/">
+<img src="https://getcomposer.org/img/logo-composer-transparent.png" height="60"> </a> 
+<a href="https://laravel.com/"> <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" height="60"> </a> 
 </p>
 
-## About Laravel
+-   **PHP**: 8.2 or higher
+-   **MySQL**: 8.0 or higher
+-   **Composer**: 2.0 or higher
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Installation
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/your-repository/paysky-laravel-task.git
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+2. **Install dependencies: Navigate into the project folder and run**:
+   ```bash
+   cd paysky-laravel-task
+   composer install
+   
+3. **Environment setup: Copy the .env.example file to .env**:
+   ```bash
+   cp .env.example .env
 
-## Learning Laravel
+4. **Generate the application key**:
+   ```bash
+   php artisan key:generate
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+5. **Set up the database**:
+   - Update your .env file with your database credentials.
+   - Run the migrations and seeders:
+   ```bash
+    php artisan migrate --seed
+   
+6. **Run the application**:
+   ```bash
+    php artisan serve
+--------------------
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Postman API Documentation
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+You can access the Postman API documentation for this project using the following link:
 
-## Laravel Sponsors
+[Postman API Documentation](https://documenter.getpostman.com/view/40986067/2sAYQZGrnc)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
-### Premium Partners
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+-------------------
+## Entity Relationship Diagram (ERD)
 
-## Contributing
+### Users and Orders:
+- There is a **one-to-many** relationship between **Users** and **Orders**, where a user can have multiple orders, but each order belongs to one user. This relationship is represented by the `user_id` in the **Orders** table.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Orders and Order_Products:
+- There is a **one-to-many** relationship between **Orders** and the **Order_Products** table. Each order can have multiple products, and this relationship is managed by the **Order_Products** pivot table.
 
-## Code of Conduct
+### Products and Order_Products:
+- There is a **many-to-many** relationship between **Products** and **Orders**, managed by the **Order_Products** pivot table. An order can have multiple products, and a product can be part of many orders. The **Order_Products** table contains the `quantity` and `price` of each product in the order.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Users and Products:
+- While there isn't a direct relationship between **Users** and **Products**, users indirectly interact with products by placing orders that contain these products.
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+![ERD](docs/erd.png)

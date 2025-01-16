@@ -20,7 +20,7 @@ class OrderService extends BaseService
         try {
 
             $order = $this->orderRepository->createOrder($products);
-            return $this->returnData(new OrderResource($order), __('Order has been created successfully'));
+            return $this->returnData(new OrderResource($order), __('Order has been created successfully'),201);
 
         } catch (\Exception $exception) {
 
