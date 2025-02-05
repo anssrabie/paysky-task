@@ -42,11 +42,11 @@ The goal of this task is to build a simple API that handles orders and payments 
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/anssrabie/paysky-task.git
+   git clone https://github.com/anssrabie/api-workflow.git
 
 2. **Install dependencies: Navigate into the project folder and run**:
    ```bash
-   cd paysky-task
+   cd api-workflow
    composer install
    
 3. **Environment setup: Copy the .env.example file to .env**:
@@ -72,11 +72,11 @@ The goal of this task is to build a simple API that handles orders and payments 
 ### Installation with Docker
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/anssrabie/paysky-task.git
+   git clone https://github.com/anssrabie/api-workflow.git
 
 2. **Navigate to the project folder**:
    ```bash
-   cd paysky-task
+   cd api-workflow
 
 3. **Build the Docker containers: If you don't have Docker installed, download and install it from [here](https://www.docker.com/)**:
    ```bash
