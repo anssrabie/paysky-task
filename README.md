@@ -1,4 +1,4 @@
-# Paysky Laravel Task - Basic E-Commerce Payment System API
+# Basic E-Commerce Payment System API
 
 ## Objective
 The goal of this task is to build a simple API that handles orders and payments for an e-commerce platform. The API will allow the creation of orders, retrieval of order details, and updating the payment status of orders.
